@@ -24,4 +24,4 @@ initdb:
 	MYSQL_PWD=${DB_PASS} mysql --host=${DB_HOST} --user=${DB_USER} --port=${DB_PORT} -D ${DB_NAME} < initdb.sql
 
 check:
-	@find . -type f -not -iwholename '*/.git/*' -not -name 'Makefile' -not -name '.env' | cat | wc --bytes
+	@find . -type f -not -iwholename '*/.git/*' -not -name 'Makefile' -not -name '.env' | cat | wc -c
