@@ -11,7 +11,7 @@ setup: install_composer initdb
 	echo DB_NAME=${DB_NAME} > ./.env
 	echo DB_USER=${DB_USER} >> ./.env
 	echo DB_PASS=${DB_PASS} >> ./.env
-	echo DB_HOST=${DB_PASS} >> ./.env
+	echo DB_HOST=${DB_HOST} >> ./.env
 	echo DB_PORT=${DB_PORT} >> ./.env
 
 install_composer:
@@ -24,4 +24,4 @@ initdb:
 	MYSQL_PWD=${DB_PASS} mysql --host=${DB_HOST} --user=${DB_USER} --port=${DB_PORT} -D ${DB_NAME} < initdb.sql
 
 check_code:
-	@find . -type f -not -iwholename '*/.git/*' | cat | wc -c
+	@find . -type f -not -iwholename '*/.git/*' -not -name 'Makefile' | cat | wc -c
