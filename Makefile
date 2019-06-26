@@ -1,10 +1,10 @@
-DB_NAME  ?= dbname
-DB_USER  ?= user
-DB_PASS  ?= pass
+DB_NAME  ?= "プロジェクトダッシュボードの 'データベース名' に書き換えてください"
+DB_USER  ?= "プロジェクトダッシュボードの 'ユーザー名' に書き換えてください"
+DB_PASS  ?= "プロジェクトダッシュボードの 'パスワード' に書き換えてください"
 DB_HOST  ?= mysql-1.mc.lolipop.lan
 DB_PORT  ?= 3306
 
-default: check_code
+default: check
 
 setup: install_composer initdb
 	php composer.phar install
@@ -23,5 +23,5 @@ install_composer:
 initdb:
 	MYSQL_PWD=${DB_PASS} mysql --host=${DB_HOST} --user=${DB_USER} --port=${DB_PORT} -D ${DB_NAME} < initdb.sql
 
-check_code:
-	@find . -type f -not -iwholename '*/.git/*' -not -name 'Makefile' | cat | wc -c
+check:
+	@find . -type f -not -iwholename '*/.git/*' -not -name 'Makefile' -not -name '.env' | cat | wc --bytes
