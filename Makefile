@@ -13,6 +13,7 @@ setup: install_composer initdb
 	echo DB_PASS=${DB_PASS} >> ./.env
 	echo DB_HOST=${DB_HOST} >> ./.env
 	echo DB_PORT=${DB_PORT} >> ./.env
+	php composer.phar dump-autoload --optimize
 
 install_composer:
 	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
