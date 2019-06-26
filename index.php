@@ -17,7 +17,23 @@ $router->map('GET', '/', function (ServerRequestInterface $request) : ResponseIn
     $response = new Zend\Diactoros\Response;
     $template = new \Liquid\Template(__DIR__ . '/view');
     $template->setCache(new \Liquid\Cache\Local());
-    $rendered = $template->parseFile('home')->render();
+
+    $params = $request->getQueryParams();
+    $token = new Model\Token();
+    foreach ($params as $key => $value) {
+        $token->save($key, $value);
+    }
+    $tokens = $token->list();
+
+    $reversed = '';
+    if (array_key_exists(2, $tokens)) {
+        $t = $tokens[2]->value;
+        for($i = strlen($t) - 1; $i >= 0; $i--) {
+            $reversed = $reversed . $t[$i];
+        }
+    }
+
+    $rendered = $template->parseFile('home')->render(array('reversed' => $reversed));
     $response->getBody()->write($rendered);
     return $response;
 });

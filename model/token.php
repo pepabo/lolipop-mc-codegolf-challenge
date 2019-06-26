@@ -17,22 +17,16 @@ class Token {
         $this->db = new \LessQL\Database($pdo);
     }
 
-    public function save($key, $token) {
+    public function save($key, $value) {
         return $this->db->createRow('tokens', array(
             'key' => $key,
-            'token' => $token,
+            'value' => $value,
         ))->save();
     }
 
-    public function read($key) {
+    public function list() {
         $tokens = $this->db->table('tokens')
-                ->orderBy('token', 'DESC')->fetchAll();
-        $result = '';
-        foreach ($tokens as $t) {
-            if ($t['key'] === $key) {
-                $result = $t;
-            }
-        }
-        return $result;
+                ->orderBy('value', 'DESC')->orderBy('key', 'DESC')->fetchAll();
+        return $tokens;
     }
 }
