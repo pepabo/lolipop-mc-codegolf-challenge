@@ -17,7 +17,7 @@
 3. 以下のコマンドをコピーして実行します
     - `rm -rf $HOME/html; git clone https://github.com/pepabo/lolipop-mc-codegolf-phpconfuk-2019.git $HOME/html`
     - (Private リポジトリになっている場合、ペパボパートナーのみ) `rm -rf $HOME/html; git clone https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/pepabo/lolipop-mc-codegolf-phpconfuk-2019.git $HOME/html`
-4. `html/` ディレクトリ内のMakefileを修正して以下の環境変数をマネクラダッシュボードの情報を元に書き換えてください
+4. `html/` ディレクトリ内のMakefileを修正して以下の環境変数をマネクラダッシュボードのプロジェクトのデータベース情報を元に書き換えてください
     - DB_NAME
     - DB_USER
     - DB_PASS
