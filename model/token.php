@@ -29,4 +29,8 @@ class Token {
                 ->orderBy('value', 'DESC')->orderBy('key', 'DESC')->fetchAll();
         return $tokens;
     }
+
+    public function delete($token) {
+        $token->delete();
+    }
 }

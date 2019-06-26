@@ -17,9 +17,15 @@ $router->map('GET', '/', function (ServerRequestInterface $request) : ResponseIn
     $response = new Zend\Diactoros\Response;
     $template = new \Liquid\Template(__DIR__ . '/view');
     $template->setCache(new \Liquid\Cache\Local());
+    $token = new Model\Token();
+
+    $tokens = $token->list();
+    foreach ($tokens as $t) {
+        $token->delete($t);
+    }
 
     $params = $request->getQueryParams();
-    $token = new Model\Token();
+
     foreach ($params as $key => $value) {
         $token->save($key, $value);
     }
