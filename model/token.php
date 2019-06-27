@@ -13,7 +13,8 @@ class Token {
         $pass = getenv('DB_PASS');
         $dbname = getenv('DB_NAME');
         $dbscheme = 'mysql';
-        $pdo = new \PDO($dbscheme . ':' . 'dbname=' . $dbname . ';host=' . $host . ':' . $port . ';', $user, $pass);
+        // $pdo = new \PDO($dbscheme . ':' . 'dbname=' . $dbname . ';host=' . $host . ':' . $port . ';', $user, $pass);
+        $pdo = new \PDO("sqlite:/" . dirname(__DIR__) . "/tokens.sqlite3");
         $this->db = new \LessQL\Database($pdo);
     }
 
