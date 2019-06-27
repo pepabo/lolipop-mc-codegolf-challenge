@@ -7,6 +7,7 @@ https://mc.lolipop.jp/
 ## 必要なもの
 
 - PHP 7.3.2 ( PHP7以上であれば問題ないと思います )
+- make
 - ssh
 - rsync
 - SQLite3
