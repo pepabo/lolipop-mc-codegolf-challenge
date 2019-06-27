@@ -2,6 +2,13 @@
 
 # Webページコードゴルフ
 
+## 必要なもの
+
+- PHP 7.3.2 ( PHP7以上であれば問題ないと思います )
+- ssh
+- rsync
+- SQLite3
+
 ## レギュレーション
 
 - あるPHPで構築されたWebサイトの、**表示を一切変えずに** Webサイトを構成する全コード全ファイルの合計ファイルサイズを小さくしてください
@@ -12,26 +19,22 @@
 
 ## はじめかた
 
-1. マネクラで新規PHPプロジェクトを作成します
-2. SSHでコンテナにログインします
-3. 以下のコマンドをコピーして実行します
-    - `rm -rf $HOME/html; git clone https://github.com/pepabo/lolipop-mc-codegolf-phpconfuk-2019.git $HOME/html`
-    - (Private リポジトリになっている場合、ペパボパートナーのみ) `rm -rf $HOME/html; git clone https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/pepabo/lolipop-mc-codegolf-phpconfuk-2019.git $HOME/html`
-4. `html/` ディレクトリ内のMakefileを修正して以下の環境変数をマネクラダッシュボードのプロジェクトのデータベース情報を元に書き換えてください
-    - DB_NAME
-    - DB_USER
-    - DB_PASS
-5. `make setup` を実行してください
-6. マネクラダッシュボードの `プロジェクトURL` にアクセスして "マネクラからの挑戦状" の表示があれば初期設置完了です。
+1. このリポジトリを `git clone` します
+2. MakefileでSSHポートやデータベースユーザの環境変数を書き換えます
+3. ローカルで以下のコマンドを実行します
+    - `make install`
+4. `make server` を実行し、ブラウザで http://localhost:8000 で "マネクラからの挑戦状" の表示があれば開発環境の構築完了です。
 
 ## スコアチェック手順
 
-1. https://phpconfuk-codegolf.lolipop.io/ にアクセスします
-2. テキストフィールドにあなたのプロジェクトの `プロジェクトURL` を入力して `Show Diff` をクリックします
-3. `Great!!! There is no difference !!!` と表示されたら **表示を一切変更していない** ことが認められました！
+1. `make deploy` を実行し、手元のソースコードをデプロイします
+2. マネクラダッシュボードの `プロジェクトURL` にアクセスして "マネクラからの挑戦状" の表示があればデプロイ設置完了です。
+3. https://phpconfuk-codegolf.lolipop.io/ にアクセスします
+4. テキストフィールドにあなたのプロジェクトの `プロジェクトURL` を入力して `Show Diff` をクリックします
+5. `Great!!! There is no difference !!!` と表示されたら **表示を一切変更していない** ことが認められました！
     - `Oh... There is a difference` と表示されたら失敗です。差分を確認して、修正して、再度挑戦してください。
-4. このときSSHコンテナ内で `cd $HOME/html; make check` を実行してください。出てきた数字が現在のあなたのスコアです。小さければ小さいほど良いです。
-5. スタッフに3のページと4の結果を見せてください。これでスコアが正式に認められました。
+6. このとき `make check` を実行してください。出てきた数字が現在のあなたのスコアです。小さければ小さいほど良いです。
+7. スタッフに3のページと4の結果を見せてください。これでスコアが正式に認められました。
 
 ## ヒント
 
