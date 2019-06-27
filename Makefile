@@ -6,7 +6,7 @@ DB_NAME = dbname # 変更してください
 DB_USER = dbuser # 変更してください
 DB_PASS = dbpass # 変更してください
 DB_HOST = mysql-1.mc.lolipop.lan # 変更してください
-DB_PORT = 3306 # 変更してください
+DB_PORT = 3306
 
 PROMPT_SSH_HOST ?= $(shell bash -c 'read -p "SSH / SFTP ホスト名(${SSH_HOST}): " VAL; echo $${VAL:-${SSH_HOST}}')
 PROMPT_SSH_PORT ?= $(shell bash -c 'read -p "SSH / SFTP ポート(${SSH_PORT}): " VAL; echo $${VAL:-${SSH_PORT}}')
