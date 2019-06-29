@@ -22,9 +22,6 @@ PROMPT_DB_HOST  ?= $(shell bash -c 'read -p "データベース データベー�
 default: check
 
 deploy:
-	$(eval SSH_PORT=${PROMPT_SSH_PORT})
-	$(eval SSH_USER=${PROMPT_SSH_USER})
-	$(eval SSH_HOST=${PROMPT_SSH_HOST})
 	rsync -av -e "ssh -p ${SSH_PORT}" --delete ./ ${SSH_USER}@${SSH_HOST}:/var/www/html
 	ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} 'chmod -R 755 /var/www/html/'
 
@@ -59,9 +56,6 @@ initdb:
 	ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} 'MYSQL_PWD=${DB_PASS} mysql --host=${DB_HOST} --user=${DB_USER} -D ${DB_NAME} < /tmp/initdb.sql'
 
 check:
-	$(eval SSH_PORT=${PROMPT_SSH_PORT})
-	$(eval SSH_USER=${PROMPT_SSH_USER})
-	$(eval SSH_HOST=${PROMPT_SSH_HOST})
 	@ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} 'find /var/www/html -type f -not -iwholename "*/.git/*" -not -name "Makefile" -not -name ".env" | cat | wc -c'
 
 ssh:
