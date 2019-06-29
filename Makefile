@@ -1,11 +1,14 @@
 # ロリポップ！マネージドクラウド
-SSH_HOST = ssh-1.mc.lolipop.jp # 変更してください
-SSH_PORT = 10022 # 変更してください
-SSH_USER = sshuser # 変更してください
-DB_NAME = dbname # 変更してください
-DB_USER = dbuser # 変更してください
-DB_PASS = dbpass # 変更してください
-DB_HOST = mysql-1.mc.lolipop.lan # 変更してください
+
+# 以下を変更してください
+SSH_HOST = ssh-1.mc.lolipop.jp
+SSH_PORT = 10022
+SSH_USER = sshuser
+DB_NAME = dbname
+DB_USER = dbuser
+DB_PASS = dbpass
+DB_HOST = mysql-1.mc.lolipop.lan
+# ここまで
 DB_PORT = 3306
 
 PROMPT_SSH_HOST ?= $(shell bash -c 'read -p "SSH / SFTP ホスト名(${SSH_HOST}): " VAL; echo $${VAL:-${SSH_HOST}}')
